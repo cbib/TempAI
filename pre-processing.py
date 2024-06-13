@@ -142,24 +142,19 @@ def preparing_seq(file, maxseq):
             res.append((padded_sequence, id))
         else:
             res.append((sequence, id))
-    for seq in res:
-        if seq[1].startswith("ENS"):
-            labels.append("protein_coding")
-        elif seq[1].startswith("LIN"):
-            labels.append("lncRNA")
-        else:
-            labels.append("rep")
-    if len(res) != len(labels):
-        raise ValueError("len res and len labels are not the same")
     return res, labels
 path_test = "/home/aladdine_lekchiri/Téléchargements/DB/fasta_test.fa"
 
 all_sequences = list()
 all_labels = list()
 sequence_ens,labels_ens = preparing_seq(path1,550)
-sequence_lnc,labels_lnc = preparing_seq(path2,550)
-sequence_repbase,labels_repbase = preparing_seq(path3,550)
-sequence_defam,labels_defam = preparing_seq(path4,550)
+labels_ens = ["protein_coding" for _ in sequence_ens]
+sequence_lnc = preparing_seq(path2,550)
+labels_lnc = ["lncRNA" for _ in sequence_lnc]
+sequence_repbase = preparing_seq(path3,550)
+labels_repbase = ["rep" for _ in sequence_repbase]
+sequence_defam = preparing_seq(path4,550)
+labels_defam = ["rep" for _ in sequence_defam]
 sequence_rep = sequence_repbase + sequence_defam
 labels_rep = labels_repbase + labels_defam
 print(f"mra : {len(sequence_ens)}, lncrna : {len(sequence_lnc)}, repbase : {len(sequence_rep)}")
