@@ -142,7 +142,7 @@ def preparing_seq(file, maxseq):
             res.append((padded_sequence, id))
         else:
             res.append((sequence, id))
-    return res, labels
+    return res
 path_test = "/home/aladdine_lekchiri/Téléchargements/DB/fasta_test.fa"
 
 all_sequences = list()
